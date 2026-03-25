@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Spline_Sans_Mono, Gasoek_One } from "next/font/google";
+import { Inter, Spline_Sans_Mono, Fraunces } from "next/font/google";
 import { Sidebar } from "@/components/sidebar";
 import { MobileHeader } from "@/components/mobile-header";
 import "./globals.css";
@@ -14,16 +14,15 @@ const splineSansMono = Spline_Sans_Mono({
   subsets: ["latin"],
 });
 
-const gasoekOne = Gasoek_One({
-  variable: "--font-gasoek-one",
-  weight: "400",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "Kurt Jeske — Product Design Leader",
   description:
-    "Design leader with 20 years of experience at Epic Games, Electronic Arts, Barnes & Noble, and Amazon.",
+    "Design leader with 15+ years of experience building teams, systems, and products at Epic Games, Electronic Arts, Barnes & Noble, and Amazon.",
 };
 
 export default function RootLayout({
@@ -34,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${splineSansMono.variable} ${gasoekOne.variable} antialiased`}
+        className={`${inter.variable} ${splineSansMono.variable} ${fraunces.variable} antialiased`}
       >
         <Sidebar />
         <MobileHeader />

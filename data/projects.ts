@@ -30,13 +30,19 @@ export type ResultsBlock = {
   body: string[];
 };
 
+export type RoleBlock = {
+  type: "role";
+  items: string[];
+};
+
 export type ContentBlock =
   | LeadBlock
   | SectionBlock
   | ImageBlock
   | ImageGridBlock
   | CaptionedImagesBlock
-  | ResultsBlock;
+  | ResultsBlock
+  | RoleBlock;
 
 // --- Project Interface ---
 
@@ -50,6 +56,7 @@ export interface Project {
   metrics?: { value: string; label: string }[];
   coverImage: string;
   coverAspectRatio: string;
+  accentColor: string;
   caseStudy: {
     blocks: ContentBlock[];
   };
@@ -60,63 +67,62 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "fortnite-ui",
-    title: "Ecosystem Adaptive UI",
+    title: "Redesigning Fortnite for 700M Players",
     company: "Epic Games",
     role: "Group Director, UXUI & Brand Design",
     year: "2020–2025",
     outcome:
-      "A modern, modular UI kit for the metaverse age — with significantly less memory cost",
+      "Overhauled Fortnite's entire frontend to support infinite content expansion — cutting UI component creation time from 4 days to 1.5",
     metrics: [
-      { value: "50%", label: "Faster UI Dev" },
+      { value: "62%", label: "Faster UI Dev" },
       { value: "700M+", label: "Players Served" },
     ],
     coverImage: "/images/fortnite-ui/hero.png",
     coverAspectRatio: "16/9",
+    accentColor: "#7B68EE",
     caseStudy: {
       blocks: [
         {
           type: "lead",
-          text: "I led the conversation on component restructuring and creative direction on the UI — a modern, modular UI kit for the metaverse age with significantly less memory cost.",
+          text: "When I joined Epic, every button in Fortnite was a standalone asset. There were over 800 of them. We needed to overhaul the system both aesthetically and for scale — while never taking the live game offline.",
+        },
+        {
+          type: "role",
+          items: [
+            "Directed a team of 12 designers and 3 UX researchers across the frontend UI workstream",
+            "Presented the component strategy to Epic's SVP of Product and secured prioritization against competing season deadlines",
+            "Negotiated 6-month runway with engineering leadership by demonstrating projected memory cost savings",
+            "Oversaw creative direction, visual language definition, and the IA restructure",
+          ],
         },
         {
           type: "section",
           heading: "A live-service game is not for the faint of heart.",
           body: [
-            "Fortnite launched in 2017 and hasn't let up on the gas since: adding new modes, infinite partnerships, a LEGO game, a proprietary engine for creator-made content, and much more.",
-            "The downside: tech and design debt were piling up, and continually punted to be dealt with later.",
-            "Five years in, Fortnite's UI was visually consistent (albeit dated), but wildly inefficient to maintain: every button was a standalone instance. We also knew that by the end of 2023 we'd have several different UI paradigms to support, and needed to overhaul the system both aesthetically and for scale.",
+            "Fortnite launched in 2017 and hasn't let up since: new modes, infinite partnerships, LEGO Fortnite, a proprietary engine for creator content. Five years of relentless shipping had left the UI visually consistent but wildly inefficient — every button bespoke, every component a snowflake.",
+            "The component library had been on the roadmap for years. It was consistently deprioritized in favor of shipping the next season. I reframed the pitch: this wasn't a design system project — it was a prerequisite for the ecosystem strategy. That changed the conversation.",
           ],
         },
         {
           type: "image-grid",
           label: "Before and After",
           images: [
-            {
-              src: "/images/fortnite-ui/old-lobby.png",
-              alt: "Fortnite lobby UI circa 2017",
-              caption: "2017",
-            },
-            {
-              src: "/images/fortnite-ui/shipped-homebar.png",
-              alt: "Fortnite lobby UI after redesign",
-              caption: "2024",
-            },
+            { src: "/images/fortnite-ui/old-lobby.png", alt: "Fortnite lobby UI circa 2017", caption: "2017" },
+            { src: "/images/fortnite-ui/shipped-homebar.png", alt: "Fortnite lobby UI after redesign", caption: "2024" },
           ],
         },
         {
           type: "section",
-          heading: "First things first.",
-          subheading:
-            "Aligning with engineering and exec leadership.",
+          heading: "The gameplay UI was a red herring.",
+          subheading: "The real opportunity was the 'front end' — lobby, discovery, social, menus.",
           body: [
-            "Working with Fortnite's UI kit in UMG (Unreal Motion Graphics UI Designer) was increasingly problematic, even for a team sitting next to the team making Unreal Engine. Everything was bespoke and required significant learned domain experience.",
-            "While consolidating a component library was perpetually on the roadmap, this was consistently deprioritized in favor of anything required to ship the next season. While the problem statement and goals were well understood, we needed to arrive at an approach. Quickly.",
-            "The actual gameplay UI was too baked into the logic of the game to be addressable, but that was also a red herring. The game's 'front end' — lobby, discovery, social, notifications, menus — was far more important to delivering the promise of a multi-product ecosystem experience.",
+            "The actual gameplay UI was too baked into game logic to address. But the game's frontend — the experience you see before and after every match — was far more important for delivering on the promise of a multi-game ecosystem.",
+            "I convinced engineering leadership to scope the overhaul to the frontend only. This made the project viable in 6 months instead of 2 years, and gave us a proving ground before touching gameplay.",
           ],
         },
         {
           type: "image-grid",
-          label: "The problem. And the solution.",
+          label: "Strategy Deck",
           images: [
             { src: "/images/fortnite-ui/deck-01.png", alt: "Process deck slide 1" },
             { src: "/images/fortnite-ui/deck-02.png", alt: "Process deck slide 2" },
@@ -128,12 +134,11 @@ export const projects: Project[] = [
         },
         {
           type: "section",
-          heading: "Setting the bar high.",
-          subheading:
-            "Defining the visual language for one of the world's biggest interactive entertainment platforms.",
+          heading: "Evolving the soul, not replacing it.",
+          subheading: "Fortnite's audience had to feel like the game grew up with them, not that it was taken over by suits.",
           body: [
-            "Fortnite had been rapidly evolving into something more than a game, more akin to your PS5 platform experience than to a Call of Duty game. While we were still designing to deliver personality and premium-polished interactions, we also needed it to be easily scannable and promote lasting twitch-level memorization that would translate across a growing catalog of content.",
-            "Further, these changes needed to feel like an evolution to Fortnite's core audience as to not suddenly feel like it had lost its soul to corporate expansion — respecting that love for Fortnite was critical to our success.",
+            "Fortnite had become more platform than game — closer to a PS5 home screen than a Call of Duty lobby. The visual language needed to be scannable, memorizable, and translatable across a growing catalog of wildly different content.",
+            "The hardest constraint: these changes needed to feel like an evolution, not a corporate rebrand. Players are fiercely protective of Fortnite's identity. Respecting that love was non-negotiable.",
           ],
         },
         {
@@ -147,33 +152,26 @@ export const projects: Project[] = [
         },
         {
           type: "section",
-          heading: "Where we're going, we don't need roads.",
-          subheading: "Codifying adaptive UI.",
+          heading: "Designing for the games that don't exist yet.",
+          subheading: "A white-label UI kit for creators to customize their own in-game experience.",
           body: [
-            "As we were defining these visual systems against the live game, we were also preparing them for the changing IA, optimizing for an ecosystem that would be very aesthetically diverse but anchored by a common journey and foundational UX.",
-            "The ecosystem UI may change colors and tone based on content, but the UX would remain consistent. Creators would have access to the white label UI kit to expedite completely customizing their own in-game experience.",
+            "While defining visual systems for the live game, we were simultaneously preparing them for a future where thousands of creator-made experiences would need their own UI — each aesthetically distinct, but anchored by consistent foundational UX.",
+            "The adaptive system changes colors and tone based on content, but the navigation, information hierarchy, and interaction patterns remain rock-solid. Creators get the UI kit pre-built and documented; they customize the skin, not the skeleton.",
           ],
         },
         {
           type: "captioned-images",
           images: [
-            {
-              src: "/images/fortnite-ui/ia-overview.png",
-              alt: "Information architecture overview",
-              caption: "The core IA provides structure to every player's experience",
-            },
-            {
-              src: "/images/fortnite-ui/framework-hierarchy.png",
-              alt: "Component framework hierarchy",
-              caption: "Reinforced with consistent foundational UX",
-            },
+            { src: "/images/fortnite-ui/ia-overview.png", alt: "Information architecture overview", caption: "The core IA — structure for every player's experience" },
+            { src: "/images/fortnite-ui/framework-hierarchy.png", alt: "Component framework hierarchy", caption: "Consistent foundational UX underneath adaptive theming" },
           ],
         },
         {
           type: "results",
           body: [
-            "Fortnite successfully launched several new tentpole game modes and a new discovery experience that supported infinitely scalable content, powered by this adaptive UI system and a significantly reduced stack of components.",
-            "The memory savings were imperative given the new content scaling, and speed of UI development was more than cut in half. We built and maintained robust documentation to provide creators along with the new UI kit, allowing for faster development and more UX consistency across new games published to the ecosystem.",
+            "UI component creation time dropped from ~4 days to ~1.5 days — a 62% reduction. The consolidated component library reduced unique UI assets by over 70%, freeing significant memory for content.",
+            "Fortnite launched multiple tentpole game modes and a new discovery experience on this foundation. The UI kit and documentation enabled creators to build polished, consistent experiences without our team bottlenecking them.",
+            "The tradeoff: we couldn't address the gameplay HUD in this phase. That debt remains. But the frontend system proved the approach, and the methodology is now being applied to gameplay UI in a follow-up initiative.",
           ],
         },
         {
@@ -191,31 +189,40 @@ export const projects: Project[] = [
   },
   {
     id: "social-systems",
-    title: "Social Systems",
+    title: "Fortnite Social & the EOS SDK",
     company: "Epic Games",
     role: "Group Director, UXUI & Brand Design",
     year: "2020–2025",
     outcome:
-      "Built the cross-platform social SDK powering Fortnite's 700M-account social graph",
+      "Redesigned social overlay, launched Reboot Rally (most successful re-engagement campaign in Fortnite history), and designed the SDK enabling any developer to access Epic's 700M-account social graph",
     metrics: [
-      { value: "700M", label: "Social Graph" },
-      { value: "3+", label: "Avg New Connections" },
+      { value: "700M", label: "Account Graph" },
+      { value: "3+", label: "Avg Reconnections" },
     ],
     coverImage: "/images/social-systems/header.png",
     coverAspectRatio: "4/3",
+    accentColor: "#4FC3F7",
     caseStudy: {
       blocks: [
         {
           type: "lead",
-          text: "Beyond cleanup, Epic had broader ambitions: build a social SDK for the EOS platform that any game developer could use, connecting players across an interconnected ecosystem.",
+          text: "Fortnite's social overlay was the most-complained-about screen in UXR studies. But fixing it was just the beginning — Epic's real ambition was to turn Fortnite's social graph into a platform that any game developer could plug into.",
+        },
+        {
+          type: "role",
+          items: [
+            "Directed 8 designers across social, voice, and SDK workstreams",
+            "Defined the SDK's design language and developer-facing documentation strategy",
+            "Championed Reboot Rally from concept through launch — pitched the retention model to executive leadership",
+            "Coordinated across console, PC, and mobile teams for input-aware social UX",
+          ],
         },
         {
           type: "section",
-          heading: "The mess we inherited.",
-          subheading: "Fortnite's social overlay needed more than a fresh coat of paint.",
+          heading: "Nobody liked the social panel. Including us.",
           body: [
-            "Fortnite's social overlay took up too much screen real estate, had accidental traversal issues in UXR tests, wasn't optimized for controller input, and was generally unattractive.",
-            "We redesigned the social panel for a tidier, more intuitive, input-optimized UX — but that was just the starting point. The real ambition was much bigger.",
+            "It consumed too much screen real estate, had accidental traversal issues with controllers, and looked like it was designed in 2018 — because it was. UXR studies consistently ranked it the most frustrating screen.",
+            "We redesigned it for clarity, input optimization, and visual coherence. But this was the easy win. The harder, more interesting question: what if Fortnite's social infrastructure could power other games?",
           ],
         },
         {
@@ -226,56 +233,49 @@ export const projects: Project[] = [
         },
         {
           type: "section",
-          heading: "Reboot Rally.",
-          subheading: "Bringing lapsed players back through their friends.",
+          heading: "Your friends are your best re-engagement channel.",
+          subheading: "Reboot Rally turned lapsed players into an acquisition strategy.",
           body: [
-            "Built Reboot Rally — a program rewarding players with unique cosmetics for inviting lapsed players back. The concept was simple: your friends are your best re-engagement channel.",
-            "Launched Social Tags for player-driven matchmaking, letting players signal their play style and preferences to find better matches with compatible strangers.",
+            "I pitched a program that rewarded active players for bringing lapsed friends back with exclusive cosmetics. The concept was dead simple, but it required coordinating across game design, economy, marketing, and engineering.",
+            "We also launched Social Tags — player-defined matchmaking preferences that helped strangers find compatible teammates. The hypothesis: make it easier to form new connections and retention improves. It did.",
           ],
         },
         {
           type: "image-grid",
           images: [
-            {
-              src: "/images/social-systems/reboot-rally-1.png",
-              alt: "Reboot Rally UI",
-              caption: "Reboot Rally invite flow",
-            },
-            {
-              src: "/images/social-systems/reboot-rally-2.png",
-              alt: "Reboot Rally rewards",
-              caption: "Exclusive rewards for bringing friends back",
-            },
+            { src: "/images/social-systems/reboot-rally-1.png", alt: "Reboot Rally UI", caption: "Reboot Rally invite flow" },
+            { src: "/images/social-systems/reboot-rally-2.png", alt: "Reboot Rally rewards", caption: "Exclusive rewards for bringing friends back" },
           ],
         },
         {
           type: "section",
-          heading: "Social, wherever you are.",
-          subheading: "Designing a cross-platform social SDK, starting mobile-first.",
+          heading: "From game feature to platform infrastructure.",
+          subheading: "Designing a mobile-first social SDK for Epic Online Services.",
           body: [
-            "Then we shifted to the bigger picture: designing a cross-platform social SDK vision, starting mobile-first, enabling parties, voice, text, and rich presence across any device or game.",
-            "The SDK would extend Fortnite's social graph to any developer that integrates it, letting smaller studios reach audiences in ways never before possible.",
+            "The bigger play: package Fortnite's social layer — parties, voice, text, rich presence — into an SDK that any developer can integrate. Start mobile-first, because that's where the growth is.",
+            "This meant designing for two audiences simultaneously: the players using it, and the developers building on it. The SDK needed to feel native to whatever game it was in, not like a Fortnite widget stapled on.",
           ],
         },
         {
           type: "captioned-images",
           images: [
-            { src: "/images/social-systems/mobile-first.png", alt: "Mobile-first social design", caption: "Mobile-first approach to social connectivity" },
-            { src: "/images/social-systems/desktop-voice.png", alt: "Desktop voice chat", caption: "Rich voice and presence on desktop" },
-            { src: "/images/social-systems/chat.png", alt: "Cross-platform chat", caption: "Unified messaging across platforms" },
+            { src: "/images/social-systems/mobile-first.png", alt: "Mobile-first social design", caption: "Mobile-first: designed for thumbs" },
+            { src: "/images/social-systems/desktop-voice.png", alt: "Desktop voice chat", caption: "Desktop: rich voice and presence" },
+            { src: "/images/social-systems/chat.png", alt: "Cross-platform chat", caption: "Unified messaging everywhere" },
           ],
         },
         {
           type: "image",
           src: "/images/social-systems/cross-platform.png",
           alt: "Cross-platform social SDK vision",
-          caption: "The SDK connecting players across the entire ecosystem",
+          caption: "The SDK — one social layer, every platform, any game",
         },
         {
           type: "results",
           body: [
-            "Reboot Rally brought back millions of players over the years, with returning players making an average of 3 new social connections — also the most successful earned media campaign in Fortnite history.",
-            "The social SDK now extends Fortnite's nearly 700M-account social graph to any developer that integrates it, letting smaller studios reach audiences in ways never before possible.",
+            "Reboot Rally brought back millions of lapsed players over multiple seasons, with returning players forming an average of 3+ new social connections. It became Fortnite's most successful earned media campaign — entirely player-driven, zero paid spend.",
+            "The social SDK now extends Epic's 700M-account graph to any developer on EOS. Smaller studios can offer the kind of social features previously only possible at Fortnite's scale.",
+            "What I'd do differently: we spent too long on the desktop voice experience when mobile voice was the higher-impact surface. That misprioritization cost us about 6 weeks.",
           ],
         },
       ],
@@ -283,31 +283,41 @@ export const projects: Project[] = [
   },
   {
     id: "ea-pc-app",
-    title: "The Player Network",
+    title: "The EA App Redesign",
     company: "Electronic Arts",
     role: "UX Director",
     year: "2016–2020",
     outcome:
-      "Re-envisioned EA's PC app for subscription-focused cross-platform play",
+      "Convinced EA to invest in a ground-up redesign of its PC platform — from Origin to the subscription-first EA App serving 10M+ subscribers",
     metrics: [
       { value: "10M+", label: "Subscribers" },
       { value: "4x", label: "Content Scale" },
     ],
     coverImage: "/images/ea-pc-app/header.png",
     coverAspectRatio: "4/3",
+    accentColor: "#FF6B35",
     caseStudy: {
       blocks: [
         {
           type: "lead",
-          text: "EA had a successful PC direct-to-consumer business in the Origin app and had just shipped a subscription service. With net bookings consistently gaining on PC, leadership wanted to invest in a re-envisioned product.",
+          text: "Origin was EA's PC app — a Steam competitor that had stalled. PC net bookings were climbing, but the product felt like an afterthought. I saw an opportunity to pitch a complete re-envisioning. Getting funded was the harder design challenge.",
+        },
+        {
+          type: "role",
+          items: [
+            "Directed a team of 6 designers, growing to 10 during peak production",
+            "Conceived and presented the product vision to EA's C-suite, securing outsized investment across 3 studios",
+            "Defined the UI architecture, component system, and responsive framework",
+            "Managed external agency partner for motion design and prototyping",
+          ],
         },
         {
           type: "section",
-          heading: "Pitching the dream.",
-          subheading: "Securing outsized investment for a complete re-envisioning.",
+          heading: "The hardest design challenge was a PowerPoint.",
+          subheading: "Securing investment by selling a vision, not a feature list.",
           body: [
-            "The Origin team was small and would need to maintain the current product for years during development, requiring restructuring and cross-studio buy-in.",
-            "After initial research and concepting, built a pitch trailer to present at EA's biannual show-and-tell and secure outsized investment. The pitch needed to sell not just a better app, but a fundamentally different player experience.",
+            "The Origin team was small — 6 designers maintaining a live product. A ground-up redesign would require multi-year commitment and coordination across 3 studios. Nobody was going to fund that based on wireframes.",
+            "I produced a pitch trailer — part product vision, part hype video — for EA's biannual show-and-tell. It positioned the new app not as a better launcher, but as the central nervous system for EA's subscription business. It worked. We got funded.",
           ],
         },
         {
@@ -322,27 +332,27 @@ export const projects: Project[] = [
         },
         {
           type: "section",
-          heading: "Built on principles.",
-          subheading: "A clear UI architecture with regions for navigation, utilities, and content.",
+          heading: "We needed rules before we needed screens.",
+          subheading: "A UI architecture that could survive 4K monitors and 1024px windows.",
           body: [
-            "Created a clear UI architecture with regions for core navigation, utilities, and content, plus a multi-layered system for dynamic content with seamless transitions.",
-            "Established adaptability rules for screen-size responsiveness — the app needed to work beautifully whether windowed small or taking over a 4K display.",
+            "Established a clear spatial architecture: regions for navigation, utilities, and content with defined behaviors at every breakpoint. A multi-layered content system handled seamless transitions between discovery, product pages, and in-progress downloads.",
+            "The app needed to look premium whether windowed at minimum size or stretched across a 32-inch display. This constraint forced us to think in systems rather than static layouts — which turned out to be the best thing that happened to the project.",
           ],
         },
         {
           type: "captioned-images",
           images: [
-            { src: "/images/ea-pc-app/structure-1.png", alt: "App structure diagram", caption: "App Structure" },
+            { src: "/images/ea-pc-app/structure-1.png", alt: "App structure diagram", caption: "Spatial Architecture" },
             { src: "/images/ea-pc-app/structure-2.png", alt: "Navigation model", caption: "Navigation Model" },
             { src: "/images/ea-pc-app/user-journeys.jpg", alt: "User journey maps", caption: "User Journeys" },
           ],
         },
         {
           type: "section",
-          heading: "Prototype, test, repeat.",
-          subheading: "Iteration cycles across every core surface.",
+          heading: "We tested everything. Players told us we were wrong. A lot.",
           body: [
-            "Ran prototype-test-repeat cycles across Home, Discover, Search, Product Pages, and Notifications. Each surface went through multiple rounds of user testing with real players.",
+            "Every core surface — Home, Discover, Search, Product Pages, Notifications — went through multiple rounds of prototype testing with real EA Play subscribers. The social features we were most excited about tested poorly. The subscription management flows we thought were simple confused everyone.",
+            "We killed three features we'd spent months designing. That hurt. But the data was unambiguous, and shipping things players don't want is worse than cutting them.",
           ],
         },
         {
@@ -358,8 +368,8 @@ export const projects: Project[] = [
         {
           type: "results",
           body: [
-            "Secured funding and cross-studio support. Shipped a new subscriptions-optimized app that could scale for years to come, built on top of a multi-product design system.",
-            "Despite some stickier features not making launch, the foundation delivered on the promise of a modern, subscription-first PC gaming experience.",
+            "Secured funding and multi-studio support for a ground-up redesign — the first time the Origin team had received that level of investment. The new EA App launched as a subscription-first platform serving 10M+ subscribers.",
+            "Three features we fought for — social hubs, community voting, and gameplay clips — didn't make the initial launch. Social hubs and clips were later shipped in modified forms; voting was permanently cut. I learned that advocating for features you love and accepting when the data disagrees are the same skill.",
           ],
         },
         {
@@ -377,60 +387,73 @@ export const projects: Project[] = [
   },
   {
     id: "quantum-design-system",
-    title: "Quantum Design System",
+    title: "Quantum — EA's First Design System",
     company: "Electronic Arts",
-    role: "UX Director",
+    role: "UX Director → founding system architect",
     year: "2014–2020",
     outcome:
-      "Unified EA's web presence, PC app, and subscription services under one design system",
+      "Conceived and built EA's first unified design language — with server-based design tokens years before the industry had a playbook for it",
     metrics: [
       { value: "5+", label: "Products Unified" },
-      { value: "100+", label: "Components" },
+      { value: "40+", label: "Designers Onboarded" },
     ],
     coverImage: "/images/quantum-design-system/header.png",
     coverAspectRatio: "4/3",
+    accentColor: "#635BFF",
     caseStudy: {
       blocks: [
         {
           type: "lead",
-          text: "Founded in 1982, EA had published hundreds of games across shifting studio organizations. Each studio had its own visual identity, and the corporate identity was either an afterthought or a supporting role.",
+          text: "In 2014, there was no industry consensus on 'design systems.' Material Design had just launched. Design tokens weren't a thing. At EA, every product was built from scratch — different colors, different components, different everything. I decided to fix that.",
+        },
+        {
+          type: "role",
+          items: [
+            "Conceived the system's foundational principles, naming conventions, and conceptual framework — without prior industry examples to reference",
+            "Architected a server-based token system that delivered platform-specific variants to web, native, and game engine clients",
+            "Evangelized adoption across 5 product teams and onboarded 40+ designers over 3 years",
+            "Managed a dedicated systems team of 3 designers and coordinated with 4 engineering partners",
+          ],
         },
         {
           type: "section",
-          heading: "An understandable mess.",
-          subheading: "When EA began creating direct-to-consumer products, the lack of identity persisted until it became unmanageable.",
+          heading: "An understandable mess — and nobody's job to fix.",
           body: [
-            "When EA began creating marketing sites and direct-to-consumer products, this lack of identity persisted until it became unmanageable. There was no shared visual language, no component library, no design tokens. Every product was built from scratch.",
+            "EA had published hundreds of games across dozens of studios since 1982. Each studio had its own visual identity. When EA started building consumer-facing products — websites, apps, subscription services — that fragmentation came with them. No shared components, no shared colors, no shared anything.",
+            "The biggest obstacle wasn't technical. It was organizational. No team owned the problem. Every product team was incentivized to ship fast, not to build shared infrastructure. I had to convince leadership that the investment would pay for itself — and then prove it.",
           ],
         },
         {
           type: "image",
           src: "/images/quantum-design-system/old-state.png",
           alt: "Fragmented state of EA's visual identity",
-          caption: "The fragmented state of EA's visual identity across products",
+          caption: "EA's consumer products before Quantum — every product a one-off",
         },
         {
           type: "section",
-          heading: "Every metamorphosis needs a metaphor.",
-          subheading: "Finding inspiration in particle physics.",
+          heading: "Every good system needs a metaphor.",
+          subheading: "We named it Quantum and rooted it in particle physics.",
           body: [
-            "Found inspiration outside gaming zeitgeist — which tended to be overly stylized and difficult to scale. Developed a visual language derived from particle physics: photons for color and transitions, fields for spatial relationships, radiation for interactivity and focus.",
+            "Gaming's visual language tended toward stylized excess — dark gradients, glow effects, aggressive typography. It didn't scale. We needed something that felt premium and intelligent without being tied to any one genre or franchise.",
+            "I found the metaphor in particle physics. Photons governed color and transitions. Fields governed spatial relationships. Radiation governed interactivity and focus states. The metaphor gave the team a shared vocabulary that was more intuitive than technical specifications — you could reason about 'photon intensity' faster than 'HSL shift at 60% lightness.'",
           ],
         },
         {
           type: "captioned-images",
           images: [
-            { src: "/images/quantum-design-system/photons.png", alt: "Photons concept", caption: "Photons — color and transitions" },
+            { src: "/images/quantum-design-system/photons.png", alt: "Photons concept", caption: "Photons — color and transition" },
             { src: "/images/quantum-design-system/fields.png", alt: "Fields concept", caption: "Fields — spatial relationships" },
             { src: "/images/quantum-design-system/radiation.png", alt: "Radiation concept", caption: "Radiation — interactivity and focus" },
           ],
         },
         {
           type: "section",
-          heading: "Design tokens, before they were cool.",
-          subheading: "Codifying all design decisions as tokens in a server-based system.",
+          heading: "Tokens before they were tokens.",
+          subheading: "A server-based system delivering platform-specific design decisions to code.",
           body: [
-            "Codified all design decisions as tokens stored in a server-based system that passed platform-specific variants straight into code. This meant a single source of truth for color, spacing, typography, and motion — consumed differently by web, native, and game engine clients.",
+            "Before Figma tokens, before Style Dictionary, before the W3C Design Token spec — we built a server-based system that stored every design decision as a token and delivered platform-specific variants straight to code. Web got CSS custom properties. Native got Swift/Kotlin constants. The game engine client got UMG-compatible values.",
+            "One source of truth. Change a color in the token server, and it propagates to 5 products within a deploy cycle. This was 2015 — we were solving problems the industry wouldn't name for another 5 years.",
+            "The skepticism was real. 'Why do we need a server for colors?' I heard that question from engineering leads, product managers, and my own VP. The answer only became obvious after the third product adopted the system and a brand refresh that would have taken months was completed in a week.",
           ],
         },
         {
@@ -442,10 +465,10 @@ export const projects: Project[] = [
         },
         {
           type: "section",
-          heading: "Building the component library.",
-          subheading: "Tiles, social, buttons, media, and animations.",
+          heading: "Components that could wear different clothes.",
+          subheading: "Themeable at the token level, structurally consistent across products.",
           body: [
-            "Built out components for tiles, social, buttons, media, and animations. Each component was designed to be themeable at the token level while maintaining structural consistency across products.",
+            "The component library — tiles, social, buttons, media players, loading animations — was designed so that any product could retheme it by swapping token values. Structure stayed locked. Aesthetics were flexible. This let EA.com, the Origin app, and EA Play share 80% of their component code while looking distinct.",
           ],
         },
         {
@@ -458,8 +481,9 @@ export const projects: Project[] = [
         {
           type: "results",
           body: [
-            "Quantum was successfully rolled out across the revised PC app and next-gen subscription apps. The visual identity became the basis for all supporting brand design.",
-            "Applied to EA Connect, a cross-play service implemented on all EA Sports titles across supported platforms. Thoroughly documented for multi-product use.",
+            "Quantum unified 5+ products under one visual language and component library. 40+ designers onboarded across 3 years. A brand refresh that was scoped at 3 months was completed in under 2 weeks thanks to the token architecture.",
+            "The system was adopted by EA Connect — a cross-play identity service across all EA Sports titles. When that rolled out to console, PC, and mobile simultaneously, the token architecture handled the platform-specific rendering without any design intervention.",
+            "What I underestimated: governance. Building the system was the easy part. Getting 5 product teams to actually use it correctly — and not fork it — required sustained evangelism, office hours, and a few uncomfortable conversations about autonomy vs. consistency. That experience shaped how I approach system adoption to this day.",
           ],
         },
         {
@@ -475,31 +499,40 @@ export const projects: Project[] = [
   },
   {
     id: "nook-hd",
-    title: "Nook HD System & Apps",
+    title: "Nook HD — B&N's Tablet Line",
     company: "Barnes & Noble",
     role: "Sr UX Designer",
     year: "2012–2014",
     outcome:
-      "Designed the OS, design system, and core media apps for Nook's tablet line",
+      "Designed the OS experience and core media apps for Nook HD — my first lesson in how design systems reveal a brand's soul",
     metrics: [
       { value: "4.5★", label: "User Rating" },
       { value: "3", label: "Core Apps Shipped" },
     ],
     coverImage: "/images/nook-hd/hero.jpg",
     coverAspectRatio: "4/3",
+    accentColor: "#81B29A",
     caseStudy: {
       blocks: [
         {
           type: "lead",
-          text: "Barnes & Noble was overhauling its Nook line of devices for a new launch. The previous designs felt cold and academic — not at all reflective of B&N's brand pillar of 'cozy.'",
+          text: "This is the project that taught me what design systems are really for. Not consistency — identity. The Nook needed to feel like a bookstore in your hands, not a cheaper iPad.",
+        },
+        {
+          type: "role",
+          items: [
+            "Owned design system definition and visual direction for all core media apps",
+            "Collaborated with industrial design and hardware engineering on OS-level experience",
+            "Presented creative direction to B&N's VP of Digital Products",
+          ],
         },
         {
           type: "section",
-          heading: "Making it cozy.",
-          subheading: "The UI needed to remind readers they were holding a book from a bookstore, not a lifeless digital facsimile.",
+          heading: "A bookstore should feel cozy. The Nook didn't.",
+          subheading: "The previous UI was cold and academic — the opposite of B&N's brand.",
           body: [
-            "Led design systems and look & feel of the core media apps. Brought organic shadows, stacks and splays for grouped content reminiscent of coffee tables, book spines, and magazine gloss shimmers.",
-            "Found the balance between analogy and function — slightly tactile, clean, with contemporary brightness on primary CTAs cutting through the textured warmth.",
+            "Introduced organic shadows, stacked-and-splayed content layouts (reminiscent of coffee tables and book piles), and magazine-gloss shimmers. The goal: when you hold this device, it should remind you why you walk into a Barnes & Noble.",
+            "The balance was delicate — enough skeuomorphic warmth to feel analog, enough restraint to let the books and magazines be the star.",
           ],
         },
         {
@@ -512,11 +545,10 @@ export const projects: Project[] = [
         },
         {
           type: "section",
-          heading: "Finding the balance.",
-          subheading: "Working within the constraints of early touch interaction.",
+          heading: "Testing killed our favorite ideas.",
           body: [
-            "The first round of explorations pushed into highly textured directions — rich paper textures, embossed elements, deep shadows. But user testing revealed that too much texture competed with the content itself.",
-            "We pulled back to find the sweet spot: enough warmth to feel like B&N, enough restraint to let the books and magazines be the star.",
+            "The first round pushed into rich paper textures, embossed elements, and deep shadows. We loved it. Users didn't — too much texture competed with the actual book covers and magazine layouts.",
+            "We pulled back hard. The final direction kept just enough warmth to feel branded while letting content breathe. It was my first experience with the gap between what designers love and what users need.",
           ],
         },
         {
@@ -537,10 +569,9 @@ export const projects: Project[] = [
         },
         {
           type: "section",
-          heading: "The core media apps.",
-          subheading: "Designing the home and discovery experiences.",
+          heading: "Three apps, one personality, different moods.",
           body: [
-            "Designed the home and discovery experiences across the core media applications — Books, Newsstand, and Video. Each app shared the design system but had its own personality tuned to the content type.",
+            "Books, Newsstand, and Video each shared the component system but had their own emotional tuning. Books was warm and quiet. Newsstand was glossy and vibrant. Video was dark and cinematic. The shared system made this possible without tripling the design effort.",
           ],
         },
         {
@@ -555,8 +586,8 @@ export const projects: Project[] = [
         {
           type: "results",
           body: [
-            "Launched the Nook HD and Nook HD+ to strong reviews for their reading experience.",
-            "Despite Nook's ultimate struggles against Amazon, Apple, and Google in the digital content marketplace, the multi-product systems work changed my perspective on what product design is and its value to a business — revealing the true nature of a brand and enabling it to scale.",
+            "Nook HD and HD+ launched to strong reviews for their reading experience and app quality.",
+            "Nook ultimately lost to Amazon, Apple, and Google. The product I helped design didn't survive the market. But the work changed my perspective on what product design is. A design system doesn't just create consistency — it reveals the true nature of a brand and gives it the means to scale. That lesson shaped everything I've done since.",
           ],
         },
       ],

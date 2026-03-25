@@ -1,35 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0a0a0a;
-  --bg-card: #161616;
-  --bg-card-hover: #1c1c1c;
-  --fg: #f0f0f0;
-  --fg-muted: #888888;
-  --fg-dim: #555555;
-  --border: #222222;
-  --border-light: #2a2a2a;
-  --accent: #4ade80;
+  /* ── Warm Dark Palette ── */
+  --bg: #12110F;
+  --bg-card: #1A1917;
+  --bg-card-hover: #221F1C;
+  --bg-elevated: #252220;
+  --fg: #EDEBE8;
+  --fg-muted: #9B9590;
+  --fg-dim: #5E5852;
+  --border: #2A2724;
+  --border-light: #352F2B;
+  --accent: #6C63FF;
 
-  --sidebar-width: 340px;
+  /* ── Layout ── */
+  --sidebar-width: 300px;
   --gap: 16px;
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 20px;
 
+  /* ── Spacing ── */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
   --space-lg: 3rem;
   --space-xl: 5rem;
 
-  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* ── Motion ── */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --transition-base: 0.3s var(--ease-out);
 }
 
 @theme inline {
   --color-bg: var(--bg);
   --color-bg-card: var(--bg-card);
   --color-bg-card-hover: var(--bg-card-hover);
+  --color-bg-elevated: var(--bg-elevated);
   --color-fg: var(--fg);
   --color-fg-muted: var(--fg-muted);
   --color-fg-dim: var(--fg-dim);
@@ -37,7 +45,7 @@
   --color-border-light: var(--border-light);
   --color-accent: var(--accent);
 
-  --font-display: var(--font-gasoek-one);
+  --font-display: var(--font-fraunces);
   --font-body: var(--font-inter);
   --font-mono: var(--font-spline-sans-mono);
 }
@@ -54,40 +62,69 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── Mesh Gradient Animation ── */
+@keyframes mesh-move {
+  0% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(5%, -3%) scale(1.05); }
+  50% { transform: translate(-2%, 5%) scale(0.98); }
+  75% { transform: translate(3%, 2%) scale(1.03); }
+  100% { transform: translate(0, 0) scale(1); }
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
+@keyframes mesh-move-2 {
+  0% { transform: translate(0, 0) scale(1.02); }
+  33% { transform: translate(-4%, 3%) scale(0.97); }
+  66% { transform: translate(3%, -4%) scale(1.04); }
+  100% { transform: translate(0, 0) scale(1.02); }
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 3px;
+@keyframes mesh-move-3 {
+  0% { transform: translate(0, 0) scale(0.98); }
+  50% { transform: translate(4%, 4%) scale(1.06); }
+  100% { transform: translate(0, 0) scale(0.98); }
 }
 
-/* Ticker animation */
+.mesh-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.mesh-orb-1 {
+  animation: mesh-move 25s ease-in-out infinite;
+}
+
+.mesh-orb-2 {
+  animation: mesh-move-2 30s ease-in-out infinite;
+}
+
+.mesh-orb-3 {
+  animation: mesh-move-3 35s ease-in-out infinite;
+}
+
+/* ── Company ticker ── */
 @keyframes ticker-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .animate-ticker {
   animation: ticker-scroll 30s linear infinite;
 }
 
-/* Horizontal scroll for work cards */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
+/* ── Scrollbar hiding ── */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* ── Selection ── */
+::selection {
+  background: var(--accent);
+  color: var(--bg);
 }
