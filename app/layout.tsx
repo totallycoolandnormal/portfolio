@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Nunito, Space_Mono } from "next/font/google";
+import { DM_Sans, Space_Mono } from "next/font/google";
+import { Nav } from "@/components/nav";
 import "./globals.css";
 
-const nunito = Nunito({
-  variable: "--font-nunito",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800", "900"],
+  weight: ["400", "500", "700"],
 });
 
 const spaceMono = Space_Mono({
@@ -27,7 +28,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${nunito.variable} ${spaceMono.variable} antialiased`}>
+      <body className={`${dmSans.variable} ${spaceMono.variable} antialiased`}>
+        <Nav />
         {children}
       </body>
     </html>
