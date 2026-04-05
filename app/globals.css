@@ -1,24 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  /* ── Warm Dark Palette ── */
-  --bg: #12110F;
-  --bg-card: #1A1917;
-  --bg-card-hover: #221F1C;
-  --bg-elevated: #252220;
-  --fg: #EDEBE8;
-  --fg-muted: #9B9590;
-  --fg-dim: #5E5852;
-  --border: #2A2724;
-  --border-light: #352F2B;
-  --accent: #6C63FF;
+  /* ── Duolingo-Inspired Palette (adapted for portfolio) ── */
+  --bg: #131F24;
+  --bg-card: #1B2B33;
+  --bg-card-hover: #223640;
+  --bg-elevated: #1B2B33;
+  --bg-surface: #162228;
+
+  --fg: #FFFFFF;
+  --fg-muted: #8BA4B0;
+  --fg-dim: #4F6B78;
+
+  --border: #253B45;
+  --border-light: #2E4854;
+
+  /* Duolingo-inspired accents */
+  --green: #58CC02;
+  --green-dark: #46A302;
+  --green-light: #89E219;
+  --blue: #1CB0F6;
+  --blue-dark: #1899D6;
+  --red: #FF4B4B;
+  --orange: #FF9600;
+  --golden: #FFC800;
+  --purple: #CE82FF;
+  --owl-green: #58CC02;
+
+  /* The signature bottom-border on buttons */
+  --btn-shadow: 0 4px 0;
 
   /* ── Layout ── */
-  --sidebar-width: 300px;
   --gap: 16px;
-  --radius-sm: 8px;
+  --radius-sm: 12px;
   --radius-md: 16px;
   --radius-lg: 20px;
+  --radius-xl: 24px;
+  --max-width: 1100px;
 
   /* ── Spacing ── */
   --space-xs: 0.5rem;
@@ -26,11 +44,14 @@
   --space-md: 1.5rem;
   --space-lg: 3rem;
   --space-xl: 5rem;
+  --space-2xl: 8rem;
 
-  /* ── Motion ── */
+  /* ── Motion (bouncy by default) ── */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
   --transition-base: 0.3s var(--ease-out);
+  --spring: 0.4s var(--ease-bounce);
 }
 
 @theme inline {
@@ -38,16 +59,25 @@
   --color-bg-card: var(--bg-card);
   --color-bg-card-hover: var(--bg-card-hover);
   --color-bg-elevated: var(--bg-elevated);
+  --color-bg-surface: var(--bg-surface);
   --color-fg: var(--fg);
   --color-fg-muted: var(--fg-muted);
   --color-fg-dim: var(--fg-dim);
   --color-border: var(--border);
   --color-border-light: var(--border-light);
-  --color-accent: var(--accent);
 
-  --font-display: var(--font-fraunces);
-  --font-body: var(--font-inter);
-  --font-mono: var(--font-spline-sans-mono);
+  --color-green: var(--green);
+  --color-green-dark: var(--green-dark);
+  --color-green-light: var(--green-light);
+  --color-blue: var(--blue);
+  --color-red: var(--red);
+  --color-orange: var(--orange);
+  --color-golden: var(--golden);
+  --color-purple: var(--purple);
+
+  --font-display: var(--font-nunito);
+  --font-body: var(--font-nunito);
+  --font-mono: var(--font-space-mono);
 }
 
 * {
@@ -66,6 +96,44 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── Duolingo-style 3D Button ── */
+.btn-3d {
+  position: relative;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 14px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  transform: translateY(0);
+}
+
+.btn-3d:active {
+  transform: translateY(4px);
+  box-shadow: 0 0px 0 currentColor !important;
+}
+
+.btn-3d-green {
+  background: var(--green);
+  color: #fff;
+  box-shadow: 0 4px 0 var(--green-dark);
+}
+
+.btn-3d-blue {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 4px 0 var(--blue-dark);
+}
+
+.btn-3d-white {
+  background: #fff;
+  color: var(--bg);
+  box-shadow: 0 4px 0 #d4d4d4;
+}
 
 /* ── Mesh Gradient Animation ── */
 @keyframes mesh-move {
@@ -97,34 +165,55 @@ body {
   will-change: transform;
 }
 
-.mesh-orb-1 {
-  animation: mesh-move 25s ease-in-out infinite;
+.mesh-orb-1 { animation: mesh-move 25s ease-in-out infinite; }
+.mesh-orb-2 { animation: mesh-move-2 30s ease-in-out infinite; }
+.mesh-orb-3 { animation: mesh-move-3 35s ease-in-out infinite; }
+
+/* ── Bounce keyframe for micro-interactions ── */
+@keyframes bounce-in {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.15); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-.mesh-orb-2 {
-  animation: mesh-move-2 30s ease-in-out infinite;
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
 }
 
-.mesh-orb-3 {
-  animation: mesh-move-3 35s ease-in-out infinite;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-/* ── Company ticker ── */
-@keyframes ticker-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+.animate-bounce-in { animation: bounce-in 0.5s var(--ease-bounce) forwards; }
+.animate-wiggle { animation: wiggle 0.5s ease-in-out; }
+.animate-float { animation: float 3s ease-in-out infinite; }
 
-.animate-ticker {
-  animation: ticker-scroll 30s linear infinite;
+/* ── Selection ── */
+::selection {
+  background: var(--green);
+  color: var(--bg);
 }
 
 /* ── Scrollbar hiding ── */
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* ── Selection ── */
-::selection {
-  background: var(--accent);
-  color: var(--bg);
+/* ── Card press effect ── */
+.card-press {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 0 var(--border);
+}
+
+.card-press:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--border);
+}
+
+.card-press:active {
+  transform: translateY(4px);
+  box-shadow: 0 0px 0 var(--border);
 }

@@ -1,28 +1,23 @@
 import type { Metadata } from "next";
-import { Inter, Spline_Sans_Mono, Fraunces } from "next/font/google";
-import { Sidebar } from "@/components/sidebar";
-import { MobileHeader } from "@/components/mobile-header";
+import { Nunito, Space_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const nunito = Nunito({
+  variable: "--font-nunito",
   subsets: ["latin"],
+  weight: ["400", "600", "700", "800", "900"],
 });
 
-const splineSansMono = Spline_Sans_Mono({
-  variable: "--font-spline-sans-mono",
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
   subsets: ["latin"],
-});
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
   title: "Kurt Jeske — Product Design Leader",
   description:
-    "Design leader with 15+ years of experience building teams, systems, and products at Epic Games, Electronic Arts, Barnes & Noble, and Amazon.",
+    "Design leader with 15+ years building teams, systems, and products at Epic Games, Electronic Arts, Barnes & Noble, and Amazon.",
 };
 
 export default function RootLayout({
@@ -32,14 +27,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.variable} ${splineSansMono.variable} ${fraunces.variable} antialiased`}
-      >
-        <Sidebar />
-        <MobileHeader />
-        <main className="ml-0 pt-16 md:ml-[var(--sidebar-width)] md:pt-0">
-          {children}
-        </main>
+      <body className={`${nunito.variable} ${spaceMono.variable} antialiased`}>
+        {children}
       </body>
     </html>
   );
