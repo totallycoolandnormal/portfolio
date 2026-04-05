@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { DM_Sans, Space_Mono } from "next/font/google";
-import { Nav } from "@/components/nav";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -29,7 +28,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.variable} ${spaceMono.variable} antialiased`}>
-        <Nav />
         {children}
       </body>
     </html>
