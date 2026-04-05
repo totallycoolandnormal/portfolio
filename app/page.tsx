@@ -241,19 +241,26 @@ export default function Home() {
                   position: "absolute",
                   inset: 0,
                 }}>
-                  <a href="/about" style={{ alignItems: "center", gap: 12, textDecoration: "none", display: "flex" }}>
-                    {/* Glass pill label */}
+                  <a
+                    href="/about"
+                    className="glass-pill-link"
+                    style={{ textDecoration: "none", display: "inline-flex" }}
+                  >
                     <span style={{ position: "relative", borderRadius: 100, overflow: "hidden" }}>
-                      <span style={{
-                        position: "absolute",
-                        inset: 0,
-                        backdropFilter: "blur(0.8px)",
-                        WebkitBackdropFilter: "blur(0.8px)",
-                        background: "rgba(255, 255, 255, 0.1)",
-                        borderRadius: "inherit",
-                        border: "1px solid rgba(255, 255, 255, 0.25)",
-                        boxShadow: "inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 16px rgba(255, 255, 255, 0.05), 0 8px 32px rgba(0, 0, 0, 0.12)",
-                      }} />
+                      <span
+                        className="glass-pill-bg"
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          backdropFilter: "blur(0.8px)",
+                          WebkitBackdropFilter: "blur(0.8px)",
+                          background: "rgba(255, 255, 255, 0.1)",
+                          borderRadius: "inherit",
+                          border: "1px solid rgba(255, 255, 255, 0.25)",
+                          boxShadow: "inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 16px rgba(255, 255, 255, 0.05), 0 8px 32px rgba(0, 0, 0, 0.12)",
+                          transition: "background 0.2s ease, border-color 0.2s ease",
+                        }}
+                      />
                       <span style={{
                         position: "relative",
                         zIndex: 1,
@@ -262,28 +269,15 @@ export default function Home() {
                         letterSpacing: "0.01em",
                         whiteSpace: "nowrap",
                         alignItems: "center",
+                        gap: 12,
                         padding: "14px 28px",
                         fontSize: 16,
                         fontWeight: 500,
                         display: "flex",
                       }}>
                         Learn about me
+                        <span className="glass-pill-arrow" style={{ fontSize: 18, transition: "transform 0.2s ease" }}>→</span>
                       </span>
-                    </span>
-
-                    {/* Glass arrow circle */}
-                    <span style={{ position: "relative", borderRadius: 100, overflow: "hidden", display: "flex", width: 48, height: 48, justifyContent: "center", alignItems: "center" }}>
-                      <span style={{
-                        position: "absolute",
-                        inset: 0,
-                        backdropFilter: "blur(0.8px)",
-                        WebkitBackdropFilter: "blur(0.8px)",
-                        background: "rgba(255, 255, 255, 0.1)",
-                        borderRadius: "inherit",
-                        border: "1px solid rgba(255, 255, 255, 0.25)",
-                        boxShadow: "inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 16px rgba(255, 255, 255, 0.05), 0 8px 32px rgba(0, 0, 0, 0.12)",
-                      }} />
-                      <span style={{ position: "relative", zIndex: 1, color: "rgba(255,255,255,0.85)", fontSize: 20 }}>→</span>
                     </span>
                   </a>
                 </div>

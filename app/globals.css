@@ -49,3 +49,13 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+
+/* Glass pill hover */
+.glass-pill-link:hover .glass-pill-bg {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.glass-pill-link:hover .glass-pill-arrow {
+  transform: translateX(4px);
+}
